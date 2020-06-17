@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Rock, paper, scissors</title>
+</head>
+<body>
+    <script>
+        const computerSelection = computerPlay();
+                
+        function computerPlay() {
+            const options = ["rock", "paper", "scissors"];
+            let pcHand = options[Math.floor(Math.random() * options.length)];
+            return pcHand;
+        }
+        
+
+        function playRound(playerSelection, computerSelection) {
+            let roundResult;
+            playerSelection = playerSelection.toLowerCase();
+            if (playerSelection == computerSelection) {
+               roundResult = "TIE";
+               alert("This round is a tie!");
+            } else {
+            
+                switch(playerSelection) {
+                    case "rock":
+                        if (computerSelection === "scissors") {
+                            roundResult = "WIN";
+                            alert("You win, rock beats scissors");
+                        } else {
+                            roundResult = "LOSE";
+                            alert("You lose, paper beats rock");
+                        }
+                        break;
+                    case "paper":
+                    if (computerSelection === "rock") {
+                            roundResult = "WIN";
+                            alert("You win, paper beats rock");
+                        } else {
+                            roundResult = "LOSE";
+                            alert("You lose, scissors beat paper");
+                        }
+                        break;
+                    case "scissors":
+                    if (computerSelection === "paper") {
+                            roundResult = "WIN";
+                            alert("You win, scissors beat paper")
+                        } else {
+                            roundResult = "LOSE";
+                            alert("You lose, rock beats scissors");
+                        }
+                        break;
+                }
+            }
+          return roundResult;
+          
+        }
+
+        function game() {
+                   
+            let round = 1;
+            let pcScore = 0;
+            let playerScore = 0;
+            
+            while (round < 6) {
+                let playerSelection = window.prompt("Rock, paper or scissors?");
+               roundResult = playRound(playerSelection, computerSelection);
+
+                if (roundResult == "WIN") {
+                    playerScore++;
+                } else if (roundResult == "LOSE") {
+                    pcScore++;
+                }
+                alert(`Round: ${round}, player: ${playerScore}, computer: ${pcScore}`);
+                round++
+            }
+            if (playerScore > 2) {
+                alert("You win the game!");
+            } else if (pcScore > 2) { 
+                alert("You lost the game!");
+            } else {
+                alert("The game was a tie!");
+            }
+
+        }
+
+            
+        console.log(game());
+
+    </script>
+</body>
+</html>
